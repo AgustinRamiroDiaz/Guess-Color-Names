@@ -1,6 +1,10 @@
 
 function nextColor() {
-    document.getElementById('colorRectangle').style.backgroundColor = randomColor().hex
+    rc = randomColor()
+    hex = rc.hex
+    name = rc.name
+    document.getElementById('colorRectangle').style.backgroundColor = hex
+    document.getElementById('colorName').innerHTML = name
 }
 
 function randomColor() {
