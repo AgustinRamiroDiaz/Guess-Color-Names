@@ -47,7 +47,7 @@ class Hangman {
     }
 
     generateButtons() {
-        let buttonsHTML = 'abcdefghijklmnopqrstuvwxyz'.split('').map(letter =>
+        let buttonsHTML = 'abcdefghijklmnopqrstuvwxyz0123456789'.split('').map(letter =>
             `
             <button
               class="btn btn-lg btn-primary m-2"
