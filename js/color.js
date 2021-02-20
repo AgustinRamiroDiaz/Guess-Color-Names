@@ -1,7 +1,6 @@
 
 async function nextColor() {
     const color = await randomColor()
-    console.log(color)
     updateColor(color.hex)
     hangman = new Hangman(color.name)
     hangman.start()
