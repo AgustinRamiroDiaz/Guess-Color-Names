@@ -1,3 +1,4 @@
+
 function nextColor() {
     const color = randomColor()
     updateColor(color.hex)
@@ -28,7 +29,9 @@ function randomItem(array) {
 class Hangman {
     constructor(word) {
         this.word = word
-        this.htmlElement = document.getElementById('colorName')
+        this.maskedWord = this.word.replace(/\S/g, '_')
+        this.generateButtons()
+        this.clear()
     }
 
     start() {
@@ -36,6 +39,51 @@ class Hangman {
     }
 
     resetText() {
-        document.getElementById('colorName').textContent = this.word.replace(/\S/g, '_')
+        document.getElementById('colorName').textContent = this.maskedWord
     }
+
+    clear() {
+        this.usedLetters = new Set()
+    }
+
+    generateButtons() {
+        let buttonsHTML = 'abcdefghijklmnopqrstuvwxyz'.split('').map(letter =>
+            `
+            <button
+              class="btn btn-lg btn-primary m-2"
+              id='` + letter + `'
+              onClick="hangman.handleGuess('` + letter + `')"
+            >
+              ` + letter + `
+            </button>
+          `).join('');
+
+        document.getElementById('keyboard').innerHTML = buttonsHTML;
+    }
+
+    handleGuess(letter) {
+        if (this.usedLetters.has(letter)) return
+        
+        this.updateMaskedWord(letter)
+        this.usedLetters.add(letter)
+        this.updateScreen()
+    }
+
+    updateMaskedWord(letter) {
+        for (let index = 0; index < this.word.length; index++) {
+            if (this.word[index] == letter || this.word[index] == letter.toUpperCase()) {
+                this.maskedWord = this.maskedWord.replaceAt(index, this.word[index])
+            }
+        }
+    }
+
+    updateScreen() {
+        document.getElementById('usedLetters').textContent = Array.from(this.usedLetters).sort()
+        document.getElementById('attempts').textContent = this.usedLetters.size
+        document.getElementById('colorName').textContent = this.maskedWord
+    }
+}
+
+String.prototype.replaceAt = function(index, replacement) {
+    return this.substr(0, index) + replacement + this.substr(index + replacement.length);
 }
