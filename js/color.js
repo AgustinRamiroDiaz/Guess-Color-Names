@@ -82,6 +82,11 @@ class Hangman {
         document.getElementById('attempts').textContent = this.usedLetters.size
         document.getElementById('colorName').textContent = this.maskedWord
     }
+
+    surrender() {
+        this.maskedWord = this.word
+        this.updateScreen()
+    }
 }
 
 String.prototype.replaceAt = function(index, replacement) {
