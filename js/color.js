@@ -1,47 +1,8 @@
-let word = ''
-let maskedWord = ''
-
-async function nextColor() {
-    const color = await randomColor()
-    updateColor(color.hex)
-    word = color.name
-    start()
-}
-
-function updateColor(hex) {
-    document.getElementById('colorRectangle').style.backgroundColor = hex
-}
-
-async function randomColor() {
-    let response = await fetch('https://api.color.pizza/v1/' + randomHex())
-    let data = await response.json()
-    return data.colors[0]
-}
-
-function randomHex() {
-    return Math.random().toString().substr(-6)
-}
-
-function randomItem(array) {
-    return array[Math.floor(Math.random() * array.length)];
-}
-
-
-
-function start() {
-    maskedWord = word.replace(/\S/g, '_')
+function init() {
     generateButtons()
-    clear()
-    resetText()
+    nextColor()
 }
 
-function resetText() {
-    document.getElementById('colorName').textContent = maskedWord
-}
-
-function clear() {
-    usedLetters = new Set()
-}
 
 function generateButtons() {
     let buttonsHTML = 'abcdefghijklmnopqrstuvwxyz'.split('').map(letter =>
@@ -56,6 +17,41 @@ function generateButtons() {
           `).join('');
 
     document.getElementById('keyboard').innerHTML = buttonsHTML;
+}
+
+
+async function nextColor() {
+    const color = await randomColor()
+    updateColor(color.hex)
+    word = color.name
+    restart()
+}
+
+function updateColor(hex) {
+    document.body.style.backgroundColor = hex
+}
+
+async function randomColor() {
+    let response = await fetch('https://api.color.pizza/v1/' + randomHex())
+    let data = await response.json()
+    return data.colors[0]
+}
+
+function randomHex() {
+    return Math.random().toString().substr(-6)
+}
+
+
+
+function restart() {
+    maskedWord = word.replace(/[a-zA-Z]/g, '_')
+    clear()
+    updateScreen()
+}
+
+
+function clear() {
+    usedLetters = new Set()
 }
 
 function handleGuess(letter) {
@@ -75,8 +71,8 @@ function updateMaskedWord(letter) {
 }
 
 function updateScreen() {
-    document.getElementById('usedLetters').textContent = Array.from(usedLetters).sort()
-    document.getElementById('attempts').textContent = usedLetters.size
+    document.getElementById('usedLetters').textContent = 'Letters used: ' + Array.from(usedLetters).sort()
+    document.getElementById('misses').textContent = 'Misses: ' + usedLetters.size
     document.getElementById('colorName').textContent = maskedWord
 }
 
@@ -85,6 +81,19 @@ function surrender() {
     updateScreen()
 }
 
+
+
+
+
+
+function randomItem(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
+
+
 String.prototype.replaceAt = function (index, replacement) {
     return this.substr(0, index) + replacement + this.substr(index + replacement.length);
 }
+
+
+window.onload = init
