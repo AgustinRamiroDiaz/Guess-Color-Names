@@ -9,7 +9,7 @@ function generateButtons() {
     let buttonsHTML = keyboardLetters.split('').map(letter =>
         `
             <button
-              class="btn m-1"
+              class="btn btn-lg m-1"
               style="color: #ffffff"
               id='` + letter + `'
               onClick="handleGuess('` + letter + `')"
@@ -120,4 +120,4 @@ document.addEventListener('keydown', function (event) {
     handleGuess(key)
 })
 
-if ('ontouchstart' in document.documentElement) prompt();
+document.body.focus()
