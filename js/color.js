@@ -9,8 +9,8 @@ function generateButtons() {
     let buttonsHTML = keyboardLetters.split('').map(letter =>
         `
             <button
-              class="btn btn-lg m-1"
-              style="color: #ffffff; font-size: 3vh"
+              class="btn m-1"
+              style="color: #ffffff"
               id='` + letter + `'
               onClick="handleGuess('` + letter + `')"
             >

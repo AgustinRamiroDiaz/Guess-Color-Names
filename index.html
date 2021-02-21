@@ -1,34 +1,35 @@
 <!doctype html>
-<html lang="en">
-<meta charset="UTF-8">
+<html lang='en'>
+<meta charset='UTF-8'>
 
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <script type="text/javascript" src="js/color.js"></script>
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css' rel='stylesheet'
+        integrity='sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl' crossorigin='anonymous'>
+    <script type='text/javascript' src='js/color.js'></script>
 
     <title>Guess Color Names!</title>
 </head>
 
-<body class="font-monospace" style="color: #ffffff ;margin: 1vh; text-align: center">
+<body class='font-monospace'
+    style='color: #ffffff ;margin: 1vh; text-align: center'>
     <div id='buttons'>
-        <button style="font-size: 2vh" type="button" class="btn btn-secondary" onclick="nextColor()">Another Color!</button>
-        <button style="font-size: 2vh" type="button" class="btn btn-secondary" onclick="surrender()">Surrender</button>
+        <button type='button' class='btn btn-secondary' onclick='nextColor()'>Another Color!</button>
+        <button type='button' class='btn btn-secondary' onclick='surrender()'>Surrender</button>
     </div>
 
-    <p id="colorName" style="letter-spacing: .1em; margin: 5vh; font-size: 5vh"></p>
-    <div id="keyboard"></div>
+    <h1 id='colorName' style='letter-spacing: .1em; margin: 5vh'></h1>
+    <div id='keyboard'></div>
 
-    <div style="margin: 3vh; font-size: 3vh">
-        <p id="usedLetters"></p>
-        <p id="misses"></p>
+    <div style='margin: 3vh'>
+        <h3 id='usedLetters'></h3>
+        <h3 id='misses'></h3>
     </div>
 
-    <h4 style="font-size: 2vh">
+    <p>
         You can also use your Computer Keyboard!<br>
         😃 Use space bar for another color<br>
-        🤔 Use "?" to surrender
-    </h4>
+        🤔 Use '?' to surrender
+    </p>
 </body>
 
 </html>
