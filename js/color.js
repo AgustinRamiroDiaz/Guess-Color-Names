@@ -49,16 +49,18 @@ function restart() {
     updateScreen()
 }
 
-
 function clear() {
     usedLetters = new Set()
+    misses = 0
 }
 
 function handleGuess(letter) {
     if (usedLetters.has(letter)) return
+    if (!word.includes(letter) && !word.includes(letter.toUpperCase())) misses++
+
+    usedLetters.add(letter)
 
     updateMaskedWord(letter)
-    usedLetters.add(letter)
     updateScreen()
 }
 
@@ -71,9 +73,9 @@ function updateMaskedWord(letter) {
 }
 
 function updateScreen() {
-    document.getElementById('usedLetters').textContent = 'Letters used: ' + Array.from(usedLetters).sort()
-    document.getElementById('misses').textContent = 'Misses: ' + usedLetters.size
     document.getElementById('colorName').textContent = maskedWord
+    document.getElementById('usedLetters').textContent = 'Letters used: ' + Array.from(usedLetters).sort()
+    document.getElementById('misses').textContent = 'Misses: ' + misses
 }
 
 function surrender() {
