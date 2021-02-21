@@ -10,7 +10,7 @@ function generateButtons() {
         `
             <button
               class="btn btn-lg m-1"
-              style="color: #ffffff"
+              style="color: #ffffff; font-size: 3vh"
               id='` + letter + `'
               onClick="handleGuess('` + letter + `')"
             >
@@ -119,5 +119,3 @@ document.addEventListener('keydown', function (event) {
     if (!keyboardLetters.includes(key)) return
     handleGuess(key)
 })
-
-document.body.focus()
