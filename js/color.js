@@ -9,7 +9,7 @@ function generateButtons() {
     let buttonsHTML = keyboardLetters.split('').map(letter =>
         `
             <button
-              class="btn m-2"
+              class="btn m-1"
               style="color: #ffffff"
               id='` + letter + `'
               onClick="handleGuess('` + letter + `')"
@@ -66,6 +66,7 @@ function clear() {
 }
 
 function handleGuess(letter) {
+    if (word === maskedWord) return
     if (usedLetters.has(letter)) return
     if (!word.includes(letter) && !word.includes(letter.toUpperCase())) misses++
 
@@ -110,3 +111,9 @@ String.prototype.replaceAt = function (index, replacement) {
 
 
 window.onload = init
+
+document.addEventListener('keydown', function (event) {
+    const key = event.key.toLowerCase()
+    if (!keyboardLetters.includes(key)) return
+    handleGuess(key)
+})
