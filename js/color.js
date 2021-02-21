@@ -1,9 +1,11 @@
+let word = ''
+let maskedWord = ''
 
 async function nextColor() {
     const color = await randomColor()
     updateColor(color.hex)
-    hangman = new Hangman(color.name)
-    hangman.start()
+    word = color.name
+    start()
 }
 
 function updateColor(hex) {
@@ -26,69 +28,63 @@ function randomItem(array) {
 
 
 
-class Hangman {
-    constructor(word) {
-        this.word = word
-        this.maskedWord = this.word.replace(/\S/g, '_')
-        this.generateButtons()
-        this.clear()
-    }
+function start() {
+    maskedWord = word.replace(/\S/g, '_')
+    generateButtons()
+    clear()
+    resetText()
+}
 
-    start() {
-        this.resetText()
-    }
+function resetText() {
+    document.getElementById('colorName').textContent = maskedWord
+}
 
-    resetText() {
-        document.getElementById('colorName').textContent = this.maskedWord
-    }
+function clear() {
+    usedLetters = new Set()
+}
 
-    clear() {
-        this.usedLetters = new Set()
-    }
-
-    generateButtons() {
-        let buttonsHTML = 'abcdefghijklmnopqrstuvwxyz0123456789'.split('').map(letter =>
-            `
+function generateButtons() {
+    let buttonsHTML = 'abcdefghijklmnopqrstuvwxyz'.split('').map(letter =>
+        `
             <button
               class="btn btn-lg btn-primary m-2"
               id='` + letter + `'
-              onClick="hangman.handleGuess('` + letter + `')"
+              onClick="handleGuess('` + letter + `')"
             >
               ` + letter + `
             </button>
           `).join('');
 
-        document.getElementById('keyboard').innerHTML = buttonsHTML;
-    }
+    document.getElementById('keyboard').innerHTML = buttonsHTML;
+}
 
-    handleGuess(letter) {
-        if (this.usedLetters.has(letter)) return
-        
-        this.updateMaskedWord(letter)
-        this.usedLetters.add(letter)
-        this.updateScreen()
-    }
+function handleGuess(letter) {
+    if (usedLetters.has(letter)) return
 
-    updateMaskedWord(letter) {
-        for (let index = 0; index < this.word.length; index++) {
-            if (this.word[index] == letter || this.word[index] == letter.toUpperCase()) {
-                this.maskedWord = this.maskedWord.replaceAt(index, this.word[index])
-            }
+    updateMaskedWord(letter)
+    usedLetters.add(letter)
+    updateScreen()
+}
+
+function updateMaskedWord(letter) {
+    for (let index = 0; index < word.length; index++) {
+        if (word[index] == letter || word[index] == letter.toUpperCase()) {
+            maskedWord = maskedWord.replaceAt(index, word[index])
         }
-    }
-
-    updateScreen() {
-        document.getElementById('usedLetters').textContent = Array.from(this.usedLetters).sort()
-        document.getElementById('attempts').textContent = this.usedLetters.size
-        document.getElementById('colorName').textContent = this.maskedWord
-    }
-
-    surrender() {
-        this.maskedWord = this.word
-        this.updateScreen()
     }
 }
 
-String.prototype.replaceAt = function(index, replacement) {
+function updateScreen() {
+    document.getElementById('usedLetters').textContent = Array.from(usedLetters).sort()
+    document.getElementById('attempts').textContent = usedLetters.size
+    document.getElementById('colorName').textContent = maskedWord
+}
+
+function surrender() {
+    maskedWord = word
+    updateScreen()
+}
+
+String.prototype.replaceAt = function (index, replacement) {
     return this.substr(0, index) + replacement + this.substr(index + replacement.length);
 }
