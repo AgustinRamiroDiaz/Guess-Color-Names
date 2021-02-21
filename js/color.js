@@ -5,10 +5,12 @@ function init() {
 
 
 function generateButtons() {
-    let buttonsHTML = 'abcdefghijklmnopqrstuvwxyz'.split('').map(letter =>
+    keyboardLetters = 'abcdefghijklmnopqrstuvwxyz'
+    let buttonsHTML = keyboardLetters.split('').map(letter =>
         `
             <button
-              class="btn btn-lg btn-primary m-2"
+              class="btn m-2"
+              style="color: #ffffff"
               id='` + letter + `'
               onClick="handleGuess('` + letter + `')"
             >
@@ -22,13 +24,9 @@ function generateButtons() {
 
 async function nextColor() {
     const color = await randomColor()
-    updateColor(color.hex)
+    updateColors(color.hex)
     word = color.name
     restart()
-}
-
-function updateColor(hex) {
-    document.body.style.backgroundColor = hex
 }
 
 async function randomColor() {
@@ -36,6 +34,19 @@ async function randomColor() {
     let data = await response.json()
     return data.colors[0]
 }
+
+function updateColors(hex) {
+    document.body.style.backgroundColor = hex
+    for (let letter of keyboardLetters) {
+        document.getElementById(letter).style.backgroundColor = adjustBrightness(hex, -20);
+        document.getElementById(letter).style.borderColor = adjustBrightness(hex, -20);
+    }
+}
+
+function adjustBrightness(color, amount) {
+    return '#' + color.replace(/^#/, '').replace(/../g, color => ('0' + Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(16)).substr(-2));
+}
+
 
 function randomHex() {
     return Math.random().toString().substr(-6)
