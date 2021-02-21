@@ -5,16 +5,17 @@
 <head>
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css' rel='stylesheet'
         integrity='sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl' crossorigin='anonymous'>
+
+    <link rel="stylesheet" href="style.css">
     <script type='text/javascript' src='js/color.js'></script>
 
     <title>Guess Color Names!</title>
 </head>
 
-<body class='font-monospace'
-    style='color: #ffffff ;margin: 1vh; text-align: center'>
+<body class='font-monospace' style='color: #ffffff ;margin: 1vh; text-align: center'>
     <div id='buttons'>
-        <button type='button' class='btn btn-secondary' onclick='nextColor()'>Another Color!</button>
-        <button type='button' class='btn btn-secondary' onclick='surrender()'>Surrender</button>
+        <button class='btn btn-secondary' onclick='nextColor()'>Another Color!</button>
+        <button class='btn btn-secondary' onclick='surrender()'>Surrender</button>
     </div>
 
     <h1 id='colorName' style='letter-spacing: .1em; margin: 5vh'></h1>
@@ -29,6 +30,10 @@
         You can also use your Computer Keyboard!<br>
         😃 Use space bar for another color<br>
         🤔 Use '?' to surrender
+    </p>
+    <p>
+        Colors are gathered from Handpicked Color Names under the ⚖️ MIT License.
+        Check their <a href="https://github.com/meodai/color-names">GitHub</a>!
     </p>
 </body>
 
