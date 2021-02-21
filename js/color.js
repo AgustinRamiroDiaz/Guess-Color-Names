@@ -63,6 +63,8 @@ function restart() {
 function clear() {
     usedLetters = new Set()
     misses = 0
+    for (let letter of keyboardLetters)
+        document.getElementById(letter).disabled = false;
 }
 
 function handleGuess(letter) {
@@ -71,6 +73,7 @@ function handleGuess(letter) {
     if (!word.includes(letter) && !word.includes(letter.toUpperCase())) misses++
 
     usedLetters.add(letter)
+    document.getElementById(letter).disabled = true;
 
     updateMaskedWord(letter)
     updateScreen()
