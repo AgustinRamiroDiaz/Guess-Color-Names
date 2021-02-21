@@ -114,6 +114,8 @@ window.onload = init
 
 document.addEventListener('keydown', function (event) {
     const key = event.key.toLowerCase()
+    if (key == ' ' || key == "😃") { nextColor(); return }
+    if (key == '?' || key == "🤔") { surrender(); return }
     if (!keyboardLetters.includes(key)) return
     handleGuess(key)
 })
