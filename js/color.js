@@ -119,3 +119,5 @@ document.addEventListener('keydown', function (event) {
     if (!keyboardLetters.includes(key)) return
     handleGuess(key)
 })
+
+if ('ontouchstart' in document.documentElement) prompt();
