@@ -8,10 +8,10 @@ function generateButtons() {
     let buttonsHTML = keyboardLetters.split('').map(letter =>
         `
             <button
-              class="btn btn-lg m-1"
-              style="color: #ffffff"
+              class='btn btn-lg m-1'
+              style='color: #ffffff'
               id='` + letter + `'
-              onClick="handleGuess('` + letter + `')"
+              onClick='handleGuess('` + letter + `')'
             >
               ` + letter + `
             </button>
@@ -33,7 +33,8 @@ function randomColor() {
 
 function updateColors(hex) {
     document.documentElement.style.setProperty('--backgroundColor', hex)
-    document.documentElement.style.setProperty('--textBackgroundColor', adjustBrightness(hex, -40))
+    document.documentElement.style.setProperty('--darkerBackgroundColor', adjustBrightness(hex, -50))
+    document.documentElement.style.setProperty('--lighterBackgroundColor', adjustBrightness(hex, +20))
 }
 
 function adjustBrightness(color, amount) {
@@ -50,19 +51,30 @@ function clear() {
     usedLetters = new Set()
     misses = 0
     for (let letter of keyboardLetters)
-        document.getElementById(letter).disabled = false;
+        {
+            document.getElementById(letter).disabled = false;
+            document.getElementById(letter).style.color = 'white'
+        }
+
 }
 
 function handleGuess(letter) {
     if (word === maskedWord) return
     if (usedLetters.has(letter)) return
-    if (!word.includes(letter) && !word.includes(letter.toUpperCase())) misses++
+
+    if (!word.includes(letter) && !word.includes(letter.toUpperCase())) 
+        missed(letter)
 
     usedLetters.add(letter)
     document.getElementById(letter).disabled = true;
 
     updateMaskedWord(letter)
     updateScreen()
+}
+
+function missed(letter) {
+    misses++
+    document.getElementById(letter).style.color = 'red'
 }
 
 function updateMaskedWord(letter) {
@@ -75,8 +87,6 @@ function updateMaskedWord(letter) {
 
 function updateScreen() {
     document.getElementById('colorName').textContent = maskedWord
-    document.getElementById('usedLetters').textContent = 'Letters used: ' + Array.from(usedLetters).sort()
-    document.getElementById('misses').textContent = 'Misses: ' + misses
 }
 
 function surrender() {

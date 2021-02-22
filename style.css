@@ -2,12 +2,26 @@ body {
     background-color: var(--backgroundColor);
 }
 
+.btn:focus {
+    outline: none;
+    cursor: pointer; 
+    box-shadow: none;
+}
+
 .btn, span {
-    background-color: var(--textBackgroundColor);
-    border-color: var(--textBackgroundColor);
+    background-color: var(--darkerBackgroundColor);
+    border-color: var(--darkerBackgroundColor);
 }
 
 span {
     border-radius: 5px;
     padding: 5px 5px 5px 5px;
+}
+
+a {
+    color: var(--lighterBackgroundColor);
+}
+
+a:hover {
+    color: var(--backgroundColor);
 }
