@@ -3,7 +3,6 @@ function init() {
     nextColor()
 }
 
-
 function generateButtons() {
     keyboardLetters = 'abcdefghijklmnopqrstuvwxyz'
     let buttonsHTML = keyboardLetters.split('').map(letter =>
@@ -21,18 +20,15 @@ function generateButtons() {
     document.getElementById('keyboard').innerHTML = buttonsHTML;
 }
 
-
-async function nextColor() {
-    const color = await randomColor()
+function nextColor() {
+    const color = randomColor()
     updateColors(color.hex)
     word = color.name
     restart()
 }
 
-async function randomColor() {
-    let response = await fetch('https://api.color.pizza/v1/' + randomHex())
-    let data = await response.json()
-    return data.colors[0]
+function randomColor() {
+    return colorNameList.randomItem()
 }
 
 function updateColors(hex) {
@@ -46,13 +42,6 @@ function updateColors(hex) {
 function adjustBrightness(color, amount) {
     return '#' + color.replace(/^#/, '').replace(/../g, color => ('0' + Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(16)).substr(-2));
 }
-
-
-function randomHex() {
-    return Math.random().toString().substr(-6)
-}
-
-
 
 function restart() {
     maskedWord = word.replace(/[a-zA-Z]/g, '_')
@@ -100,17 +89,14 @@ function surrender() {
 
 
 
-
-
-
-function randomItem(array) {
-    return array[Math.floor(Math.random() * array.length)];
+Array.prototype.randomItem = function() {
+    return this[Math.floor(Math.random() * this.length)];
 }
-
 
 String.prototype.replaceAt = function (index, replacement) {
     return this.substr(0, index) + replacement + this.substr(index + replacement.length);
 }
+
 
 
 window.onload = init
