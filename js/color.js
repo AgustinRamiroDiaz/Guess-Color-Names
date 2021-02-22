@@ -10,8 +10,8 @@ function generateButtons() {
             <button
               class='btn btn-lg m-1'
               style='color: #ffffff'
-              id='` + letter + `'
-              onClick='handleGuess('` + letter + `')'
+              id="` + letter + `"
+              onClick="handleGuess('` + letter + `')"
             >
               ` + letter + `
             </button>
