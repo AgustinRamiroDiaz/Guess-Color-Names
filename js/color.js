@@ -8,7 +8,7 @@ function generateButtons() {
     let buttonsHTML = keyboardLetters.split('').map(letter =>
         `
             <button
-              class='btn btn-lg m-1'
+              class="btn btn-lg m-1"
               style='color: #ffffff'
               id="` + letter + `"
               onClick="handleGuess('` + letter + `')"
@@ -42,14 +42,17 @@ function adjustBrightness(color, amount) {
 }
 
 function restart() {
-    maskedWord = word.replace(/[a-zA-Z]/g, '_')
+    maskWord();
     clear()
     updateScreen()
 }
 
+function maskWord() {
+    maskedWord = word.replace(/[a-zA-Z]/g, '_');
+}
+
 function clear() {
     usedLetters = new Set()
-    misses = 0
     for (let letter of keyboardLetters)
         {
             document.getElementById(letter).disabled = false;
@@ -73,7 +76,6 @@ function handleGuess(letter) {
 }
 
 function missed(letter) {
-    misses++
     document.getElementById(letter).style.color = 'red'
 }
 
