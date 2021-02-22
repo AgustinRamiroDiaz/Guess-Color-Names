@@ -1,0 +1,13 @@
+body {
+    background-color: var(--backgroundColor);
+}
+
+.btn, span {
+    background-color: var(--textBackgroundColor);
+    border-color: var(--textBackgroundColor);
+}
+
+span {
+    border-radius: 5px;
+    padding: 5px 5px 5px 5px;
+}

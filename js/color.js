@@ -32,11 +32,8 @@ function randomColor() {
 }
 
 function updateColors(hex) {
-    document.body.style.backgroundColor = hex
-    for (let letter of keyboardLetters) {
-        document.getElementById(letter).style.backgroundColor = adjustBrightness(hex, -20);
-        document.getElementById(letter).style.borderColor = adjustBrightness(hex, -20);
-    }
+    document.documentElement.style.setProperty('--backgroundColor', hex)
+    document.documentElement.style.setProperty('--textBackgroundColor', adjustBrightness(hex, -40))
 }
 
 function adjustBrightness(color, amount) {
@@ -87,24 +84,3 @@ function surrender() {
     updateScreen()
 }
 
-
-
-Array.prototype.randomItem = function() {
-    return this[Math.floor(Math.random() * this.length)];
-}
-
-String.prototype.replaceAt = function (index, replacement) {
-    return this.substr(0, index) + replacement + this.substr(index + replacement.length);
-}
-
-
-
-window.onload = init
-
-document.addEventListener('keydown', function (event) {
-    const key = event.key.toLowerCase()
-    if (key == ' ' || key == "😃") { nextColor(); return }
-    if (key == '?' || key == "🤔") { surrender(); return }
-    if (!keyboardLetters.includes(key)) return
-    handleGuess(key)
-})
