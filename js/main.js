@@ -2,6 +2,7 @@ var app = new Vue({
     el: '#app',
     data: {
         word: '',
+        maskedWord: '',
         keyboardLetters: 'abcdefghijklmnopqrstuvwxyz',
 
     },
@@ -55,7 +56,6 @@ var app = new Vue({
         restart() {
             this.maskWord();
             this.clear()
-            this.updateScreen()
         },
 
         maskWord() {
@@ -82,7 +82,6 @@ var app = new Vue({
             document.getElementById(letter).disabled = true;
 
             this.updateMaskedWord(letter)
-            this.updateScreen()
         },
 
         missed(letter) {
@@ -97,13 +96,8 @@ var app = new Vue({
             }
         },
 
-        updateScreen() {
-            document.getElementById('colorName').textContent = this.maskedWord
-        },
-
         surrender() {
             this.maskedWord = this.word
-            this.updateScreen()
         },
 
     }
