@@ -1,9 +1,9 @@
-window.onload = init
+window.onload = app.init
 
 document.addEventListener('keydown', function (event) {
     const key = event.key.toLowerCase()
-    if (key == 'enter') { nextColor(); return }
-    if (key == '?') { surrender(); return }
-    if (!keyboardLetters.includes(key)) return
-    handleGuess(key)
+    if (key == 'enter') { app.nextColor(); return }
+    if (key == '?') { app.surrender(); return }
+    if (!app.keyboardLetters.includes(key)) return
+    app.handleGuess(key)
 })

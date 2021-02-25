@@ -8,39 +8,52 @@
 </head>
 
 <body class='font-monospace' style='color: white; text-align: center'>
-    <div id='buttons' style='margin: 2vh'>
-        <button class='btn btn-secondary' onclick='nextColor()'>Another Color!</button>
-        <button class='btn btn-secondary' onclick='surrender()'>Surrender</button>
-    </div>
+    <div id="app">
+        <nav id='buttons' style='margin: 2vh'>
+            <button class='btn btn-secondary' onclick='nextColor()'>Another Color!</button>
+            <button class='btn btn-secondary' onclick='surrender()'>Surrender</button>
+        </nav>
 
-    <h4><span>👈 Play hangman to guess the background color's name 👉</span></h4>
-    <h1 style='letter-spacing: .1em; margin: 5vh'><span id='colorName'></span></h1>
-    <div id='keyboard'></div>
+        <h4><span>👈 Play hangman to guess the background color's name 👉</span></h4>
+        <h1 style='letter-spacing: .1em; margin: 5vh'><span id='colorName'></span></h1>
+        <div id='keyboard'></div>
 
-    <div>
-        <p style="margin: 3vh;">
-            <span>You can also use your Computer Keyboard!</span><br>
-            <span>😃 Use 'enter' for another color</span><br>
-            <span>🤔 Use '?' to surrender</span>
-        </p>
+        <div>
+            <p style="margin: 3vh;">
+                <span>You can also use your Computer Keyboard!</span><br>
+                <span>😃 Use 'enter' for another color</span><br>
+                <span>🤔 Use '?' to surrender</span>
+            </p>
 
-        <p>
-            <span>
-                Colors are gathered from Handpicked Color Names under the ⚖️ MIT License.
-                Check their <a href='https://github.com/meodai/color-names'>GitHub</a>!
-            </span>
-        </p>
+            <p>
+                <span>
+                    Colors are gathered from Handpicked Color Names under the ⚖️ MIT License.
+                    Check their <a href='https://github.com/meodai/color-names'>GitHub</a>!
+                </span>
+            </p>
+        </div>
+
     </div>
 </body>
 
+<!-- Vue development -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
-<script type='text/javascript' src='js/color.js'></script>
+<!-- Vue production -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
+
+<!-- JS -->
+<script type='text/javascript' src='js/main.js'></script>
 <script type='text/javascript' src='js/colornames.umd.js'></script>
 <script type='text/javascript' src='js/index.js'></script>
 <script type='text/javascript' src='js/prototype.js'></script>
 
+
+<!-- Bootstrap -->
 <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css' rel='stylesheet'
     integrity='sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl' crossorigin='anonymous'>
+
+<!-- CSS -->
 <link href='style.css' rel='stylesheet'>
 
 
