@@ -10,14 +10,14 @@ Vue.component('keyboard-letter-button', {
     class="btn btn-lg m-1"
     style='color: #ffffff'
     :id="letter"
-    @click="handleGuess()"
+    @click="handleGuess(letter)"
     > 
     {{ letter }}
     </button>
     `,
     methods: {
-        handleGuess() {
-            console.log('Magacostada')
+        handleGuess(letter) {
+            app.handleGuess(letter)
         }
     }
 })
@@ -37,21 +37,21 @@ var app = new Vue({
             this.nextColor()
         },
 
-
+        // TODO: Implement behaviour in component
         generateButtons() {
-            const buttonsHTML = this.keyboardLetters.split('').map(letter =>
-                `
-                <button
-                class="btn btn-lg m-1"
-                style='color: #ffffff'
-                id="` + letter + `"
-                onClick="app.handleGuess('` + letter + `')"
-                >
-                ` + letter + `
-                </button>
-                `).join('');
+            // const buttonsHTML = this.keyboardLetters.split('').map(letter =>
+            //     `
+            //     <button
+            //     class="btn btn-lg m-1"
+            //     style='color: #ffffff'
+            //     id="` + letter + `"
+            //     onClick="app.handleGuess('` + letter + `')"
+            //     >
+            //     ` + letter + `
+            //     </button>
+            //     `).join('');
 
-            document.getElementById('keyboard').innerHTML = buttonsHTML;
+            // document.getElementById('keyboard').innerHTML = buttonsHTML;
         },
 
 
