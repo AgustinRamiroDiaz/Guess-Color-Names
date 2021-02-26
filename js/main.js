@@ -1,3 +1,27 @@
+Vue.component('keyboard-letter-button', {
+    props: {
+        letter: {
+            type: String,
+            required: true,
+        }
+    },
+    template: `
+    <button
+    class="btn btn-lg m-1"
+    style='color: #ffffff'
+    :id="letter"
+    @click="handleGuess()"
+    > 
+    {{ letter }}
+    </button>
+    `,
+    methods: {
+        handleGuess() {
+            console.log('Magacostada')
+        }
+    }
+})
+
 var app = new Vue({
     el: '#app',
     data: {

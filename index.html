@@ -16,7 +16,11 @@
 
         <h4><span>👈 Play hangman to guess the background color's name 👉</span></h4>
         <h1 style='letter-spacing: .1em; margin: 5vh'><span id='colorName'>{{ maskedWord }}</span></h1>
-        <div id='keyboard'></div>
+        <div id='keyboard'>
+            <div v-for="keyboardLetter in keyboardLetters">
+                <keyboard-letter-button :letter="keyboardLetter"></keyboard-letter-button>
+            </div>
+        </div>
 
         <div>
             <p style="margin: 3vh;">
